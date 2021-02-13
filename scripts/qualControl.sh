@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 outDir=$1
 file1=$2
 file2=$3

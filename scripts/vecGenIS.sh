@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 outDir=$1
 file1=$2
 file2=$3
@@ -265,7 +268,7 @@ awk -F ',' '($11=="Non-uniqueHit")' ISGenomeVector.csv >> ISGenomeVector.NonUniq
 
 
 echo -e "Chr,GenomicPosition,StrandGenomic,VectorName,VectorPosition,StrandVector,ReadID,Sequence,SpanGenomic,SpanVector,OverlapFusion,DistanceFusion" >  ISGenomeVector.Unclustered.csv
-less  alignment.22.sam.A | cut -f1-10,17- | sed 's/\t/,/g' >>  ISGenomeVector.Unclustered.csv
+cat  alignment.22.sam.A | cut -f1-10,17- | sed 's/\t/,/g' >>  ISGenomeVector.Unclustered.csv
 else
 echo " "
 echo "NO GENOME-VECTOR FUSIONS OR IS FOUND."

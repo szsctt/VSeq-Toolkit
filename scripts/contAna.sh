@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 outDir=$1
 file1=$2
 file2=$3
@@ -123,7 +126,7 @@ awk '($2=="83" || $2=="99" || $2=="97" || $2=="81" || $2=="65" || $2=="113" )' $
 
 echo "size<=50", "size>50.<=100", "size>100.<=200", "size>200.<=500", "size>500.<=1000", "size>1000", > $outDir/header3
 sed '$!{:a;N;s/\n/,/;ta}'  $outDir/size > $outDir/size1
-less $outDir/size1 >> $outDir/ContAnalysis_FragmentSizeDistribution.csv
+cat $outDir/size1 >> $outDir/ContAnalysis_FragmentSizeDistribution.csv
 rm $outDir/size $outDir/size1
 
 #for vector only
@@ -136,7 +139,7 @@ awk '($2=="83" || $2=="99" || $2=="97" || $2=="81" || $2=="65" || $2=="113" )' $
 
 echo "size<=50", "size>50.<=100", "size>100.<=200", "size>200.<=500", "size>500.<=1000", "size>1000", > $outDir/header3
 sed '$!{:a;N;s/\n/,/;ta}'  $outDir/size > $outDir/size1
-less $outDir/size1 >> $outDir/ContAnalysis_FragmentSizeDistribution.csv
+cat $outDir/size1 >> $outDir/ContAnalysis_FragmentSizeDistribution.csv
 
 echo "Reference,chr,contaminants_All,vector" > $outDir/head1
 sed -i 's/,/\n/g' $outDir/head1

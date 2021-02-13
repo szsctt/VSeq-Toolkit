@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 outDir=$1
 Ref=$2
 aligner=$3

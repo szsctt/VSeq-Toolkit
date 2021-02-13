@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 outDir=${1}
 bedtools=${2}
 cd $outDir

@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 outDir=$1
 file1=$2

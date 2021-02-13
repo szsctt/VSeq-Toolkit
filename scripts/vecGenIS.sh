@@ -29,13 +29,17 @@ echo " "
 if [[ $contCheck == *true* && $vecVecFusionCheck == *true* ]]; then
         echo "Alignment with viral vector and genome reference in process..."
         $aligner mem -M -t 10 -T 15 $vecGenRef $outDir/ContAnalysis_WithoutContaminantsReadPairs.R1.fastq.gz  $outDir/ContAnalysis_WithoutContaminantsReadPairs.R2.fastq.gz > $outDir/alignment.2.sam.basic0
-        grep -v -Fwf vecToRemoveIDS $outDir/alignment.2.sam.basic0 > $outDir/alignment.2.sam.basic
+        if [ -e vecToRemoveIDS ]; then # vecToRemoveIDS only exists if vector-vector fusions found
+        	grep -v -Fwf vecToRemoveIDS $outDir/alignment.2.sam.basic0 > $outDir/alignment.2.sam.basic
+        fi
 fi
 
 if [[ $contCheck == *false* && $vecVecFusionCheck == *true* ]]; then
 	echo "Alignment with viral vector and genome reference in process..."
 	$aligner mem -M -t 10 -T 15 $vecGenRef $outDir/*pair1.fastq  $outDir/*pair2.fastq > $outDir/alignment.2.sam.basic0	
-	grep -v -Fwf vecToRemoveIDS $outDir/alignment.2.sam.basic0 > $outDir/alignment.2.sam.basic
+    if [ -e vecToRemoveIDS ]; then # vecToRemoveIDS only exists if vector-vector fusions found
+		grep -v -Fwf vecToRemoveIDS $outDir/alignment.2.sam.basic0 > $outDir/alignment.2.sam.basic
+    fi
 fi
 
 if [[ $contCheck == *false* && $vecVecFusionCheck == *false* ]];then
